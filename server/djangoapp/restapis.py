@@ -156,3 +156,18 @@ def analyze_review_sentiments(review_text):
     print(sentiment_label)
 
     return sentiment_label
+
+def get_dealer_by_id(url, dealer_id):
+    # Call get_request with the dealer_id param
+    json_result = get_request(url, dealerId=dealer_id)
+    print(json_result)
+
+    # Create a CarDealer object from response
+    dealers = json_result['docs']
+    dealer= dealers[0]
+    dealer_obj = CarDealer(address=dealer["address"], city=dealer["city"], full_name=dealer["full_name"],
+    id=dealer["id"], lat=dealer["lat"], long=dealer["long"],
+    short_name=dealer["short_name"],
+    st=dealer["st"], state=dealer["state"], zip=dealer["zip"])
+                           
+    return dealer_obj
